@@ -3,7 +3,7 @@
 sudo apt-get update
 sudo apt-get upgrade
 
-sudo apt-get install linux-headers-$(uname -r) build-essential
+sudo apt-get -y install linux-headers-$(uname -r) build-essential
 echo "Go to Menu > Devices > Install Guest Additions"
 echo "and press ENTER to continue when you are done"
 read
