@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt-get update
-sudo apt-get upgrade
+sudo apt-geti -y upgrade
 
 sudo apt-get -y install linux-headers-$(uname -r) build-essential
 echo "Go to Menu > Devices > Install Guest Additions"
