@@ -21,6 +21,9 @@ Scripts to configure a new Ubuntu to be used with Vagrant as base box
 
   ```
   #!/bin/bash
+  
+  echo "Get VagrantFile from github"
+  curl -o VagrantFile https://raw.github.com/tiberiuc/new-vagrant-base-box-config/master/vagrant-files/VagrantFile
 
   echo "Remove existing package"
   rm -rf package.box
