@@ -18,8 +18,7 @@ if [ ! -f ${INSTALLED_FLAG_FILE} ]; then
         sudo chmod 777 /home/tmp
         
         sudo -u vagrant cp -R /home/host/.ssh/id* ~/.ssh/
-        sudo -u vagrant cd ~/.ssh
-        sudo -u vagrant chmod 600 id*
+        sudo -u vagrant bash -c "cd ~/.ssh; chmod 600 id*"
 
         sudo -u vagrant echo 'done' > ${INSTALLED_FLAG_FILE}
 
