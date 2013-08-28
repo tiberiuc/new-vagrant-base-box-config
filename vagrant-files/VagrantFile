@@ -24,6 +24,12 @@ Vagrant.configure('2') do |config|
     config.vm.network :forwarded_port, guest: 8082, host: 8082, auto_correct: true
     config.vm.network :forwarded_port, guest: 8083, host: 8083, auto_correct: true
 
+    config.vm.network :private_network, ip: "192.168.33.10"
+
+    config.vm.synced_folder "~", "/home/host", :nfs => true
+
+    config.ssh.forward_agent = true
+
     # System cconfiguration
     config.vm.provision :shell, :inline => $script
 
@@ -32,3 +38,4 @@ Vagrant.configure('2') do |config|
         vb.customize ["modifyvm", :id, "--cpus", $vm_cpus]
     end
 end
+
