@@ -20,3 +20,5 @@ chmod +x *.sh
 ./5.sh
 ./6.sh
 
+rm *.sh
+
