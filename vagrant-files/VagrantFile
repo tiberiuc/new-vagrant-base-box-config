@@ -1,0 +1,9 @@
+Vagrant::Config.run do |config|
+    # Forwards
+    config.vm.forward_port 8081, 8081
+    config.vm.forward_port 8082, 8082
+    config.vm.forward_port 8083, 8083
+
+    # System cconfiguration
+    config.vm.provision :shell, :path => "configure.sh"
+end
