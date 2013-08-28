@@ -12,6 +12,10 @@ if [ ! -f ${INSTALLED_FLAG_FILE} ]; then
 
         echo "Installing dot files"
         curl https://raw.github.com/tiberiuc/dot-files/master/install.sh | sudo -u vagrant sh
+        
+        sudo mkdir -p /home/tmp
+        sudo chown vagrant:vagrant /home/tmp
+        sudo chmod 777 /home/tmp
 
         sudo -u vagrant echo 'done' > ${INSTALLED_FLAG_FILE}
 
