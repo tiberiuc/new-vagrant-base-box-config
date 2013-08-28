@@ -5,5 +5,5 @@ Vagrant::Config.run do |config|
     config.vm.forward_port 8083, 8083
 
     # System cconfiguration
-    config.vm.provision :shell, :path => "configure.sh"
+    config.vm.provision :shell, :path => "configure-system.sh"
 end
