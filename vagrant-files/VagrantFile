@@ -16,6 +16,10 @@ if [ ! -f ${INSTALLED_FLAG_FILE} ]; then
         sudo mkdir -p /home/tmp
         sudo chown vagrant:vagrant /home/tmp
         sudo chmod 777 /home/tmp
+        
+        cp -R /home/host/.ssh/id* ~/.ssh/
+        cd ~/.ssh
+        chmod 600 id*
 
         sudo -u vagrant echo 'done' > ${INSTALLED_FLAG_FILE}
 
