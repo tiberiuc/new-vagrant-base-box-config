@@ -1,9 +1,34 @@
-Vagrant::Config.run do |config|
+$vm_memory ||= "2048"
+$vm_cpus ||= "2"
+
+$script = <<SCRIPT
+INSTALLED_FLAG_FILE=/home/vagrant/.installed
+
+if [ ! -f ${INSTALLED_FLAG_FILE} ]; then
+
+        echo "Installing packages"
+
+        curl https://raw.github.com/tiberiuc/development-box-configuration/master/install.sh | sudo -u vagrant sh
+
+        echo "Installing dot files"
+        curl https://raw.github.com/tiberiuc/dot-files/master/install.sh | sudo -u vagrant sh
+
+        sudo -u vagrant echo 'done' > ${INSTALLED_FLAG_FILE}
+
+fi
+SCRIPT
+
+Vagrant.configure('2') do |config|
     # Forwards
-    config.vm.forward_port 8081, 8081
-    config.vm.forward_port 8082, 8082
-    config.vm.forward_port 8083, 8083
+    config.vm.network :forwarded_port, guest: 8081, host: 8081, auto_correct: true
+    config.vm.network :forwarded_port, guest: 8082, host: 8082, auto_correct: true
+    config.vm.network :forwarded_port, guest: 8083, host: 8083, auto_correct: true
 
     # System cconfiguration
-    config.vm.provision :shell, :path => "configure-system.sh"
+    config.vm.provision :shell, :inline => $script
+
+    config.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", $vm_memory]
+        vb.customize ["modifyvm", :id, "--cpus", $vm_cpus]
+    end
 end
